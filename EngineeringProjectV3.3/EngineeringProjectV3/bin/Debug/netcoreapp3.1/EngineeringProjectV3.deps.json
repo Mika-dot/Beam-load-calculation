@@ -1,0 +1,96 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "EngineeringProjectV3/1.0.0": {
+        "dependencies": {
+          "ZedGraph": "5.1.7",
+          "ZedGraph.resources": "5.1.7.430"
+        },
+        "runtime": {
+          "EngineeringProjectV3.dll": {}
+        }
+      },
+      "ZedGraph/5.1.7": {
+        "runtime": {
+          "lib/net35-Client/ZedGraph.dll": {
+            "assemblyVersion": "5.1.7.430",
+            "fileVersion": "5.1.7.430"
+          }
+        },
+        "resources": {
+          "lib/net35-Client/de/ZedGraph.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net35-Client/es/ZedGraph.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net35-Client/fr/ZedGraph.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net35-Client/hu/ZedGraph.resources.dll": {
+            "locale": "hu"
+          },
+          "lib/net35-Client/it/ZedGraph.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net35-Client/ja/ZedGraph.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net35-Client/pt/ZedGraph.resources.dll": {
+            "locale": "pt"
+          },
+          "lib/net35-Client/ru/ZedGraph.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net35-Client/sk/ZedGraph.resources.dll": {
+            "locale": "sk"
+          },
+          "lib/net35-Client/sv/ZedGraph.resources.dll": {
+            "locale": "sv"
+          },
+          "lib/net35-Client/tr/ZedGraph.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net35-Client/zh-cn/ZedGraph.resources.dll": {
+            "locale": "zh-cn"
+          },
+          "lib/net35-Client/zh-tw/ZedGraph.resources.dll": {
+            "locale": "zh-tw"
+          }
+        }
+      },
+      "ZedGraph.resources/5.1.7.430": {
+        "runtime": {
+          "ZedGraph.resources.dll": {
+            "assemblyVersion": "5.1.7.430",
+            "fileVersion": "5.1.7.430"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "EngineeringProjectV3/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ZedGraph/5.1.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TcZaInxUjYMJDWIaYvs/CgpssfVJQMqiry8GPP70klyheP4tYSQXFWi5HYwJvqao+epeUu3bsk3yDb3Nf/hVWw==",
+      "path": "zedgraph/5.1.7",
+      "hashPath": "zedgraph.5.1.7.nupkg.sha512"
+    },
+    "ZedGraph.resources/5.1.7.430": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
