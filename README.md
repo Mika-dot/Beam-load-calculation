@@ -4,10 +4,15 @@ Calculation of the load of the beam number 49.
 The program interface is presented below. There is also a console representation of the program operation.
 
 #### visual
-![visual](https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/interface.PNG)
+<p align="center">
+  <img src="https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/interface.PNG?raw=true" alt="visual"/>
+</p>
 
 #### console
-![console](https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/consol.PNG)
+<p align="center">
+  <img src="https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/consol.PNG?raw=true" alt="console"/>
+</p>
+
 
 An example of a manual calculation is presented as a docx file at the root of the project, also here.
 
@@ -18,7 +23,9 @@ F1 = 2kN;
 F2 = 3kN;
 q = 5kN/m.
 
-![Rice 1](https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/1.PNG)
+<p align="center">
+  <img src="https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/1.PNG?raw=true" alt="Rice 1"/>
+</p>
 Rice. 1. Given scheme.
 
 Payment
@@ -30,15 +37,22 @@ The solution of the equations of statics (1) gives the following reaction values
 YA = 1.275kN;
 YB = 2.225kN.
 
-![Rice 2](https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/2.PNG)
+<p align="center">
+  <img src="https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/2.PNG?raw=true" alt="Rice 2"/>
+</p>
 Rice. 2. Scheme of reactions. 
 
-![Rice 3](https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/3.PNG)
+<p align="center">
+  <img src="https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/3.PNG?raw=true" alt="Rice 3"/>
+</p>
 Rice. 3. Plot Qy, kN (transverse force).
  
-![Rice 4](https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/4.PNG)
+<p align="center">
+  <img src="https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/4.PNG?raw=true" alt="Rice 4"/>
+</p>
 Rice. 4. Plot Mx, kN⋅m (bending moment).
-2. Construction of diagrams of internal force factors for the circuit in Fig. 2
+
+<2. Construction of diagrams of internal force factors for the circuit in Fig. 2
 Plot №1 (0 ≤ z1 ≤ 0.25m)
 Qy = -YA = -1.275kN.
 Mx = -YA z1;
@@ -66,4 +80,4 @@ Plot №5 (0 ≤ z5 ≤ 0.2m)
 Qy = -F2 + YB = -0.775kN.
 Mx = F2 z5 - YB (z5 + 0.2m);
 at z5 = 0; Mx = -0.445kN m.
-at z5 = 0.2m; Mx = -0.29kN m.
+at z5 = 0.2m; Mx = -0.29kN m.>
