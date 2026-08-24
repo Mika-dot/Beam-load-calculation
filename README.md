@@ -1,111 +1,100 @@
-# Beam-load-calculation
-Calculation of the load of the beam number 49.
+# Universal Engineering Calculator
 
-The program interface is presented below. There is also a console representation of the program operation.
+Многофункциональный инженерный калькулятор на базе исходного проекта **Beam-load-calculation**.
 
-#### visual
-<p align="center">
-  <img src="https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/interface.PNG?raw=true" alt="visual"/>
-</p>
+Исходная версия была ориентирована на один учебный расчёт балки №49. Проект переработан в универсальную инженерную платформу для расчётов механики, прочности и строительных элементов.
 
-#### console
-<p align="center">
-  <img src="https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/consol.PNG?raw=true" alt="console"/>
-</p>
+## Основные направления
 
+### 1. Расчёт балок
 
-An example of a manual calculation is presented as a docx file at the root of the project, also here.
+Поддержка:
 
-REPORT
-Initial data
-L = 1m;
-F1 = 2kN;
-F2 = 3kN;
-q = 5kN/m.
+- шарнирно-опёртые балки;
+- консольные балки;
+- многопролётные балки;
+- точечные нагрузки;
+- распределённые нагрузки;
+- моменты;
+- собственный вес.
 
-<p align="center">
-  <img src="https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/1.PNG?raw=true" alt="Rice 1"/>
-</p>
-Rice. 1. Given scheme.
+Результаты:
 
-Payment
-1. Determination of the support reactions for the scheme in Fig. 2
-Let us compose the equations of static equilibrium.
-∑Fy = F1 + F2 - q 0.3m - YA - YB = 0;
-∑MA = F1 0.25m + F2 0.8m - q 0.3m 0.45m - YB 1m = 0. (1)
-The solution of the equations of statics (1) gives the following reaction values:
-YA = 1.275kN;
-YB = 2.225kN.
+- реакции опор;
+- эпюра поперечных сил Q;
+- эпюра изгибающих моментов M;
+- максимальный момент;
+- положение опасного сечения.
 
-<p align="center">
-  <img src="https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/2.PNG?raw=true" alt="Rice 2"/>
-</p>
-Rice. 2. Scheme of reactions. 
+### 2. Проверка сечений
 
-<p align="center">
-  <img src="https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/3.PNG?raw=true" alt="Rice 3"/>
-</p>
-Rice. 3. Plot Qy, kN (transverse force).
- 
-<p align="center">
-  <img src="https://github.com/Mika-dot/Beam-load-calculation/blob/main/img/4.PNG?raw=true" alt="Rice 4"/>
-</p>
-Rice. 4. Plot Mx, kN⋅m (bending moment).
+Планируется библиотека:
 
-2. Construction of diagrams of internal force factors for the circuit in Fig.
+- прямоугольные профили;
+- круглые профили;
+- трубы;
+- двутавры;
+- пользовательские профили.
 
-Plot №1 (0 ≤ z1 ≤ 0.25m)
+Расчёт:
 
-Qy = -YA = -1.275kN.
+- момент инерции;
+- момент сопротивления;
+- напряжения изгиба;
+- коэффициенты запаса.
 
-Mx = -YA z1;
+### 3. Материалы
 
-at z1 = 0; Mx = 0.
+База материалов:
 
-at z1 = 0.25m; Mx = -0.31875 kN m.
+- сталь;
+- алюминий;
+- дерево;
+- бетон;
+- пользовательские материалы.
 
-Plot №2 (0 ≤ z2 ≤ 0.05m)
+Параметры:
 
-Qy = F1 - YA = 0.725kN.
+- модуль Юнга;
+- предел текучести;
+- плотность;
+- допускаемые напряжения.
 
-Mx = F1 z2 - YA (z2 + 0.25m);
+## Архитектура
 
-at z2 = 0; Mx = -0.31875 kN m.
+```
+UniversalEngineeringCalculator
+│
+├── Core
+│   ├── Mathematics
+│   ├── Mechanics
+│   └── Units
+│
+├── Structural
+│   ├── BeamSolver
+│   ├── SectionLibrary
+│   └── MaterialDatabase
+│
+├── Visualization
+│   ├── LoadDiagram
+│   ├── ShearDiagram
+│   └── MomentDiagram
+│
+└── Reports
+    └── EngineeringReportGenerator
+```
 
-at z2 = 0.05m; Mx = -0.2825kN m.
+## Цель проекта
 
-Plot №3 (0 ≤ z3 ≤ 0.3m)
+Создать свободный инженерный инструмент уровня учебных и предварительных расчётов:
 
-Qy = -q z3 + F1 - YA;
+- быстрые проверки конструкций;
+- визуализация инженерных моделей;
+- генерация отчётов;
+- расширяемая библиотека расчётов.
 
-at z3 = 0; Qy = 0.725kN.
+## Статус
 
-at z3 = 0.3m; Qy = -0.775kN.
+Ветка разработки:
 
-Mx = -q z32/2 + F1 (z3 + 0.05m) - YA (z3 + 0.3m);
-
-at z3 = 0; Mx = -0.2825kN m.
-
-at z3 = 0.145m; Mx = -0.22994kN m.
-
-at z3 = 0.3m; Mx = -0.29kN m.
-
-Plot №4 (0 ≤ z4 ≤ 0.2m)
-
-Qy = YB = 2.225kN.
-
-Mx = -YB z4;
-
-at z4 = 0; Mx = 0.
-
-at z4 = 0.2m; Mx = -0.445kN m.
-
-Plot №5 (0 ≤ z5 ≤ 0.2m)
-
-Qy = -F2 + YB = -0.775kN.
-
-Mx = F2 z5 - YB (z5 + 0.2m);
-
-at z5 = 0; Mx = -0.445kN m.
-
-at z5 = 0.2m; Mx = -0.29kN m.
+`feature/universal-engineering-calculator`
