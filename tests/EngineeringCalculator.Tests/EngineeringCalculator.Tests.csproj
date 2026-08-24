@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>EngineeringCalculator.Tests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup><ProjectReference Include="..\..\src\EngineeringCalculator.Core\EngineeringCalculator.Core.csproj" /></ItemGroup>
+</Project>

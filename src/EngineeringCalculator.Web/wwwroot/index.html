@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>UEC — инженерный калькулятор</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">UE</span><span><b>Universal Engineering</b><small>CALCULATOR</small></span></a>
+    <div class="top-actions"><span class="live"><i></i> Ядро готово</span><button class="ghost" id="print">Печать / PDF</button></div>
+  </header>
+  <main class="shell">
+    <nav class="rail" aria-label="Разделы">
+      <button class="nav active" data-view="beam"><span>⌁</span>Балка</button>
+      <button class="nav" data-view="column"><span>↥</span>Колонна</button>
+      <button class="nav" data-view="truss"><span>△</span>Ферма</button>
+      <a class="nav docs" href="https://github.com/Mika-dot/Beam-load-calculation" target="_blank"><span>?</span>Документация</a>
+    </nav>
+    <section class="workspace">
+      <div class="view active" id="beam-view">
+        <div class="page-title"><div><p class="eyebrow">Расчётная схема</p><h1>Балка Эйлера—Бернулли</h1><p>Произвольные опоры и нагрузки, прочность, жёсткость и подбор профиля.</p></div><button class="primary" id="calculate">Рассчитать</button></div>
+        <div class="layout">
+          <aside class="panel inputs">
+            <div class="panel-head"><h2>Исходные данные</h2><button class="text-btn" id="reset">Сбросить</button></div>
+            <label>Название проекта<input id="name" value="Балка покрытия Б-1"></label>
+            <div class="two"><label>Длина, м<input id="length" type="number" value="6" min="0.1" step="0.1"></label><label>Предел прогиба L/<input id="limit" type="number" value="250" min="50"></label></div>
+            <label>Материал<select id="material"></select></label><label>Сечение<select id="section"></select></label>
+            <label class="check"><input id="selfWeight" type="checkbox" checked><span>Учитывать собственный вес</span></label>
+            <h3>Опоры</h3><div class="two"><label>Левая<select id="leftSupport"><option value="pinned">Шарнир</option><option value="fixed">Защемление</option><option value="free">Свободный край</option></select></label><label>Правая<select id="rightSupport"><option value="roller">Каток</option><option value="fixed">Защемление</option><option value="free">Свободный край</option></select></label></div>
+            <h3>Распределённая нагрузка</h3><div class="two"><label>q начало, кН/м<input id="q0" type="number" value="12" min="0" step="0.5"></label><label>q конец, кН/м<input id="q1" type="number" value="12" min="0" step="0.5"></label></div>
+            <div class="two"><label>Начало, м<input id="qStart" type="number" value="0" min="0" step="0.1"></label><label>Конец, м<input id="qEnd" type="number" value="6" min="0" step="0.1"></label></div>
+            <h3>Сосредоточенная сила</h3><div class="two"><label>P, кН<input id="force" type="number" value="18" min="0" step="1"></label><label>Позиция, м<input id="forceAt" type="number" value="2" min="0" step="0.1"></label></div>
+            <button class="secondary" id="selectProfile">Подобрать минимальный IPE</button>
+          </aside>
+          <div class="results">
+            <section class="beam-card panel"><div class="panel-head"><div><p class="eyebrow">Модель</p><h2 id="scheme-title">Балка покрытия Б-1</h2></div><span class="tag">SI</span></div><svg id="scheme" viewBox="0 0 900 180" aria-label="Схема балки"></svg></section>
+            <div class="metrics">
+              <article><span>Изгибающий момент</span><b id="maxM">—</b><small>макс. |M|</small></article><article><span>Поперечная сила</span><b id="maxQ">—</b><small>макс. |Q|</small></article>
+              <article><span>Прогиб</span><b id="maxF">—</b><small id="limitF">предел —</small></article><article><span>Напряжение</span><b id="maxS">—</b><small>макс. |σ|</small></article>
+            </div>
+            <section class="verdict panel"><div><span id="status-dot"></span><div><p class="eyebrow">Результат проверки</p><h2 id="status">Ожидает расчёта</h2></div></div><div class="util"><span>Использование</span><b id="util">—</b></div></section>
+            <section class="chart-grid"><article class="panel"><div class="chart-head"><h3>Поперечная сила Q</h3><span>кН</span></div><svg class="chart" id="shear" viewBox="0 0 600 220"></svg></article><article class="panel"><div class="chart-head"><h3>Изгибающий момент M</h3><span>кН·м</span></div><svg class="chart" id="moment" viewBox="0 0 600 220"></svg></article></section>
+            <section class="panel"><div class="chart-head"><h3>Линия прогибов</h3><span>мм</span></div><svg class="chart wide" id="deflection" viewBox="0 0 1200 220"></svg></section>
+            <section id="selection" class="panel hidden"><div class="panel-head"><h2>Подбор профиля</h2><span class="tag">по минимальной массе</span></div><div class="table-wrap"><table><thead><tr><th>Профиль</th><th>Масса</th><th>Напряжение</th><th>Прогиб</th><th>Использование</th></tr></thead><tbody id="selectionRows"></tbody></table></div></section>
+          </div>
+        </div>
+      </div>
+      <div class="view" id="column-view">
+        <div class="page-title"><div><p class="eyebrow">Устойчивость</p><h1>Центрально-сжатая колонна</h1><p>Проверка прочности и потери устойчивости по формуле Эйлера.</p></div><button class="primary" id="columnCalculate">Рассчитать</button></div>
+        <div class="column-layout"><section class="panel inputs">
+          <label>Длина, м<input id="cLength" type="number" value="3" min="0.1" step="0.1"></label><label>Продольная сила, кН<input id="cForce" type="number" value="350" min="0" step="10"></label>
+          <label>Материал<select id="cMaterial"></select></label><label>Сечение<select id="cSection"></select></label><label>Закрепление<select id="cEnds"><option value="pinnedPinned">Шарнир–шарнир</option><option value="fixedFree">Защемление–свободный</option><option value="fixedPinned">Защемление–шарнир</option><option value="fixedFixed">Защемление–защемление</option></select></label>
+        </section><section class="panel column-result"><div class="column-visual"><div class="column-line"></div><span>N</span></div><div><p class="eyebrow">Результат</p><h2 id="cStatus">Ожидает расчёта</h2><dl><div><dt>Критическая сила</dt><dd id="cCritical">—</dd></div><div><dt>Гибкость λ</dt><dd id="cSlender">—</dd></div><div><dt>Использование</dt><dd id="cUtil">—</dd></div></dl></div></section></div>
+      </div>
+      <div class="view" id="truss-view">
+        <div class="page-title"><div><p class="eyebrow">Метод перемещений</p><h1>Плоская стержневая ферма</h1><p>Демонстрационная модель: перемещения, реакции, продольные силы и напряжения.</p></div><button class="primary" id="trussCalculate">Рассчитать пример</button></div>
+        <section class="panel truss-panel"><svg id="trussSvg" viewBox="0 0 900 440"></svg><div><p class="eyebrow">Стержни</p><h2 id="trussStatus">Ожидает расчёта</h2><table><thead><tr><th>Элемент</th><th>N, кН</th><th>σ, МПа</th><th>η</th></tr></thead><tbody id="trussRows"></tbody></table></div></section>
+      </div>
+    </section>
+  </main>
+  <div class="toast" id="toast"></div><script src="app.js"></script>
+</body></html>

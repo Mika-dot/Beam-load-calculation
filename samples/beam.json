@@ -1,0 +1,20 @@
+{
+  "name": "Балка покрытия Б-1",
+  "length": 6.0,
+  "materialId": "steel-s235",
+  "sectionId": "ipe 300",
+  "supports": [
+    { "position": 0.0, "type": "pinned", "name": "A" },
+    { "position": 6.0, "type": "roller", "name": "B" }
+  ],
+  "pointLoads": [
+    { "position": 2.0, "forceKn": 18.0, "name": "Оборудование" }
+  ],
+  "moments": [],
+  "distributedLoads": [
+    { "start": 0.0, "end": 6.0, "startKnPerM": 12.0, "endKnPerM": 12.0, "name": "Постоянная + временная" }
+  ],
+  "includeSelfWeight": true,
+  "meshElements": 120,
+  "deflectionLimitRatio": 250
+}
